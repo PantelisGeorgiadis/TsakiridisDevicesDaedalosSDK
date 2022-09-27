@@ -3,7 +3,7 @@
 //
 //      Project     :   TsakiridisDevicesDaedalos
 //      Description :   Tsakiridis Devices Daedalos Desktop Application
-//      Author      :	Pantelis Georgiadis (PantelisGeorgiadis@Gmail.com)
+//      Author      :   Pantelis Georgiadis (PantelisGeorgiadis@Gmail.com)
 //      Date        :   17-10-2016
 //
 //

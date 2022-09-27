@@ -8,7 +8,7 @@ The SDK contains the required code to communicate with a Tsakiridis Devices Dead
 This SDK is used as the basis of the official Tsakiridis Devices Daedalos companion application, that can be downloaded from [here](http://www.tsakiridis-devices.com/software/tsakiridis_devices_daedalos_v1.2.0.zip).
 
 ### Build
-![build main](https://github.com/PantelisGeorgiadis/TsakiridisDevicesDaedalosSDK/workflows/build/badge.svg?branch=main)
+![build main](https://github.com/PantelisGeorgiadis/TsakiridisDevicesDaedalosSDK/workflows/build/badge.svg?branch=master)
 
 	Open the `TsakiridisDevicesDaedalos.sln` file in Microsoft Visual Studio.
 	Press `Build Solution` (or F6) to build the solution.

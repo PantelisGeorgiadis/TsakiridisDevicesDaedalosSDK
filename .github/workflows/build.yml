@@ -2,7 +2,7 @@ name: build
 'on':
   push:
     branches:
-      - main
+      - master
 jobs:
   net-framework:
     runs-on: windows-latest
@@ -11,11 +11,16 @@ jobs:
         uses: microsoft/setup-msbuild@v1.0.2
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: csharp
       - name: Setup NuGet
         uses: nuget/setup-nuget@v1
       - name: Restore nuget packages
         run: nuget restore TsakiridisDevicesDaedalos.sln
       - name: Build
         run: >-
-          msbuild TsakiridisDevicesDaedalos.sln -p:Configuration=Release
-          -maxCpuCount
+          msbuild TsakiridisDevicesDaedalos.sln -p:Configuration=Release -p:UseSharedCompilation=false
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@v2
