@@ -1,0 +1,21 @@
+name: build
+'on':
+  push:
+    branches:
+      - main
+jobs:
+  net-framework:
+    runs-on: windows-latest
+    steps:
+      - name: Setup MSBuild.exe
+        uses: microsoft/setup-msbuild@v1.0.2
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v1
+      - name: Restore nuget packages
+        run: nuget restore TsakiridisDevicesDaedalos.sln
+      - name: Build
+        run: >-
+          msbuild TsakiridisDevicesDaedalos.sln -p:Configuration=Release
+          -maxCpuCount
