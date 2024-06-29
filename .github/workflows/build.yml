@@ -8,11 +8,11 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Setup MSBuild.exe
-        uses: microsoft/setup-msbuild@v1.0.2
+        uses: microsoft/setup-msbuild@v2
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
+        uses: github/codeql-action/init@v3
         with:
           languages: csharp
       - name: Setup NuGet
@@ -23,4 +23,4 @@ jobs:
         run: >-
           msbuild TsakiridisDevicesDaedalos.sln -p:Configuration=Release -p:UseSharedCompilation=false
       - name: Perform CodeQL analysis
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3

@@ -495,27 +495,27 @@ namespace TsakiridisDevicesDaedalos.SDK.Device
                     {
                         case PacketMarkers.StartOfFrame:
                         {
-                            //A new packet or a restart is received
-                            _packetBufferSize = 0; //Reset pointer to buffer
-                            _newPacket = false; //Nothing received yet
+                            // A new packet or a restart is received
+                            _packetBufferSize = 0; // Reset pointer to buffer
+                            _newPacket = false; // Nothing received yet
                             _escMode = 0;
                             continue;
                         }
                         case PacketMarkers.EscapeCharacter:
                         {
-                            _escMode = PacketMarkers.XorCharacter; //Will escape the next char
-                            continue; //Read the next char
+                            _escMode = PacketMarkers.XorCharacter; // Will escape the next char
+                            continue; // Read the next char
                         }
                         case PacketMarkers.EndOfMessage:
                         {
-                            //Break out of the loop, leaving the rest of the input unread, to go to packet processing.
+                            // Break out of the loop, leaving the rest of the input unread, to go to packet processing.
                             _newPacket = true;
                             _escMode = 0;
                             break;
                         }
                         default:
                         {
-                            //Store the char, with escape if set
+                            // Store the char, with escape if set
                             if (_packetBufferSize < MaxPacketBufferSize)
                                 _packetBuffer[_packetBufferSize++] =
                                     (byte) (b ^ _escMode);
@@ -532,7 +532,7 @@ namespace TsakiridisDevicesDaedalos.SDK.Device
 
                         if (Checksum.CompareChecksum(packetData))
                         {
-                            //Packet was correct. Break out of the loop, leaving the rest of the input unread, to go to packet processing.
+                            // Packet was correct. Break out of the loop, leaving the rest of the input unread, to go to packet processing.
                             // Packet length minus the checksum is returned.
                             var packetDataMinusChecksum = new byte[_packetBufferSize - 2];
                             Array.Copy(_packetBuffer, 0, packetDataMinusChecksum, 0, _packetBufferSize - 2);
@@ -541,7 +541,9 @@ namespace TsakiridisDevicesDaedalos.SDK.Device
                         else
                         {
                             // Checksum was incorrect, keep reading input.
-                            _newPacket = false;
+                            _packetBufferSize = 0; // Reset pointer to buffer
+                            _newPacket = false; // Nothing received yet
+                            _escMode = 0;
                         }
                     }
                 }
