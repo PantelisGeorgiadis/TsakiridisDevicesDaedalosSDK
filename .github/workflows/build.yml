@@ -1,8 +1,14 @@
 name: build
-'on':
+
+on:
   push:
-    branches:
-      - master
+    branches: [ master ]
+    
+permissions:
+  actions: read
+  contents: read
+  security-events: write       
+      
 jobs:
   net-framework:
     runs-on: windows-latest
@@ -16,7 +22,7 @@ jobs:
         with:
           languages: csharp
       - name: Setup NuGet
-        uses: nuget/setup-nuget@v1
+        uses: nuget/setup-nuget@v2
       - name: Restore nuget packages
         run: nuget restore TsakiridisDevicesDaedalos.sln
       - name: Build
